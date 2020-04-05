@@ -39,13 +39,12 @@ public class OrderPublishServiceImpl implements OrderPublishService {
 
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 400)
     public void scheduledPublishOrder() {
         Set<ZSetOperations.TypedTuple<Object>> orderNosRes = zSetOperations.rangeByScoreWithScores(delayOrderKey, 0, Double.valueOf(System.currentTimeMillis()));
         for (ZSetOperations.TypedTuple<Object> eachOrder : orderNosRes) {
             String orderNo = (String) eachOrder.getValue();
-            long orderTimeL = Double.valueOf(eachOrder.getScore()).longValue();
-            System.out.println("开始处理订单:" + orderNo + "|该订单接收时间:" + new Date(orderTimeL) + "|在" + new Date() + "从延迟队列中移除并通知给消费方");
+            System.out.println("订单:" + orderNo + "|在" + new Date() + "从延迟队列中移除并通知给消费方");
             long removeNum = zSetOperations.remove(delayOrderKey, orderNo);
             if (removeNum == 1) {
                 stringRedisTemplate.convertAndSend(myTopic, orderNo);
