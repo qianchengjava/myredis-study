@@ -29,17 +29,12 @@ public class SubscriberConfig {
 
     @Bean
     public MessageListenerAdapter adapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMsg");
+        return new MessageListenerAdapter(receiver, "receiveOrder");
     }
 
     @Bean
-    public Receiver receiver(CountDownLatch latch) {
-        return new Receiver(latch);
-
-    }
-
-    @Bean
-    public CountDownLatch latch() {
+    public CountDownLatch countDownLatch() {
         return new CountDownLatch(1);
     }
+
 }

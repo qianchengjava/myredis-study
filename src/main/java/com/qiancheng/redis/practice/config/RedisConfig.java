@@ -113,14 +113,14 @@ public class RedisConfig {
 //        return redisTemplate.opsForSet();
 //    }
 //
-//    /**
-//     * 对有序集合类型的数据操作
-//     *
-//     * @param redisTemplate
-//     * @return
-//     */
-//    @Bean
-//    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
-//        return redisTemplate.opsForZSet();
-//    }
+    /**
+     * 对有序集合类型的数据操作
+     *
+     * @param redisTemplate
+     * @return
+     */
+    @Bean
+    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
+        return redisTemplate.opsForZSet();
+    }
 }

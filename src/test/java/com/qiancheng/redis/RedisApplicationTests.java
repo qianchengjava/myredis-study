@@ -4,14 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.qiancheng.redis.practice.reids.RedisKeyUtil;
 import com.qiancheng.redis.practice.reids.RedisService;
 import com.qiancheng.redis.practice.vo.UserVo;
+import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +27,12 @@ class RedisApplicationTests {
     @Autowired
     private RedisTemplate redisTemplate;
 
-//    @Resource
+    @Value("${redis.msg.topic}")
+    private String myTopic;
+    @Value("${redis.zset.delay-order.key}")
+    private String delayOrderKey;
+
+    //    @Resource
 //    private ValueOperations<String, Object> valueOperations;
 //
 //    @Autowired
@@ -36,14 +44,21 @@ class RedisApplicationTests {
 //    @Autowired
 //    private SetOperations<String, Object> setOperations;
 //
-//    @Autowired
-//    private ZSetOperations<String, Object> zSetOperations;
+    @Autowired
+    private ZSetOperations<String, Object> zSetOperations;
 //
 //    @Resource
 //    private RedisService redisService;
 
     @Test
-    void contextLoads() {
+    public void testZSet() {
+        Double now = new Double(System.currentTimeMillis() +1000*60*60);
+        Set<ZSetOperations.TypedTuple<Object>> orderNosRes = zSetOperations.rangeByScoreWithScores(delayOrderKey, 0,now );
+        for (ZSetOperations.TypedTuple<Object> eachOrder : orderNosRes) {
+            String orderNo = (String) eachOrder.getValue();
+            System.out.println(now + "|" + orderNo + "|" + eachOrder.getScore());
+
+        }
     }
 
 //    @Test
