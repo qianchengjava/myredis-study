@@ -11,12 +11,11 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 @Service
 public class Receiver {
-    public Receiver() {
-    }
-
-    @Autowired
-    private ZSetOperations<String, Object> zSetOperations;
-
+    /**
+     * 接收订单
+     *
+     * @param orderNo
+     */
     public void receiveOrder(String orderNo) {
         log.info("消费订单 :" + orderNo + "|的时间:" + new Date(System.currentTimeMillis()));
     }

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 入口接收一个订单，10秒之后发给消费者
+ */
 @RestController
 @RequestMapping
 public class OrderController {

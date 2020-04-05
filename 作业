@@ -1,6 +1,16 @@
-
-
-
+一单选
+1.B
+2.C
+3.C
+二多选
+1.BC
+2.BC
+3.BCD
+4.ABCD
+5.ABC
+三填空题
+1.AB
+2.ABCDE
 
 
 四问答题
@@ -31,6 +41,9 @@ rpush生产
 blpop消费
 pub/sub
 sorted时间戳score
+
+
+见附件：大致逻辑为controller接收一个订单，延迟10s后发送给消费者
 
 
 

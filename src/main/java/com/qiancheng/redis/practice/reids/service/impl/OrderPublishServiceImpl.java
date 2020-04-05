@@ -15,6 +15,9 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 订单service类
+ */
 @Slf4j
 @Service
 @EnableScheduling
@@ -31,7 +34,11 @@ public class OrderPublishServiceImpl implements OrderPublishService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-
+    /**
+     * 接收一个订单
+     *
+     * @param orderNo
+     */
     @Override
     public void acceptOrder(String orderNo) {
         log.info("当前时间:" + new Date() + "|再过" + DELAY_SECONDS + "秒之后发送订单|订单号:" + orderNo);
@@ -39,16 +46,17 @@ public class OrderPublishServiceImpl implements OrderPublishService {
 
     }
 
+    /**
+     * 定时任务，扫描redis zset元素，取出应处理的元素并发出消息
+     */
     @Scheduled(fixedRate = 400)
     public void scheduledPublishOrder() {
         Set<ZSetOperations.TypedTuple<Object>> orderNosRes = zSetOperations.rangeByScoreWithScores(delayOrderKey, 0, Double.valueOf(System.currentTimeMillis()));
         for (ZSetOperations.TypedTuple<Object> eachOrder : orderNosRes) {
             String orderNo = (String) eachOrder.getValue();
-            System.out.println("订单:" + orderNo + "|在" + new Date() + "从延迟队列中移除并通知给消费方");
-            long removeNum = zSetOperations.remove(delayOrderKey, orderNo);
-            if (removeNum == 1) {
-                stringRedisTemplate.convertAndSend(myTopic, orderNo);
-            }
+            log.info("订单:" + orderNo + "|在" + new Date() + "从延迟队列中移除并通知给消费方");
+            zSetOperations.remove(delayOrderKey, orderNo);
+            stringRedisTemplate.convertAndSend(myTopic, orderNo);
         }
     }
 

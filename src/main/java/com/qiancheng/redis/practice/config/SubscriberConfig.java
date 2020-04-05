@@ -32,9 +32,5 @@ public class SubscriberConfig {
         return new MessageListenerAdapter(receiver, "receiveOrder");
     }
 
-    @Bean
-    public CountDownLatch countDownLatch() {
-        return new CountDownLatch(1);
-    }
 
 }
