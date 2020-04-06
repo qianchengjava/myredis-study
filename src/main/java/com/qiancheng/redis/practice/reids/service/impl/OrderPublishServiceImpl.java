@@ -14,13 +14,13 @@ import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * 订单service类
  */
 @Slf4j
 @Service
-@EnableScheduling
 public class OrderPublishServiceImpl implements OrderPublishService {
 
     @Value("${redis.msg.topic}")
@@ -49,8 +49,9 @@ public class OrderPublishServiceImpl implements OrderPublishService {
     /**
      * 定时任务，扫描redis zset元素，取出应处理的元素并发出消息
      */
-    @Scheduled(fixedRate = 400)
+    @Scheduled(fixedRate = 2000)
     public void scheduledPublishOrder() {
+        System.out.println(Thread.currentThread().getName() + "|" + Thread.currentThread().getId());
         Set<ZSetOperations.TypedTuple<Object>> orderNosRes = zSetOperations.rangeByScoreWithScores(delayOrderKey, 0, Double.valueOf(System.currentTimeMillis()));
         for (ZSetOperations.TypedTuple<Object> eachOrder : orderNosRes) {
             String orderNo = (String) eachOrder.getValue();
