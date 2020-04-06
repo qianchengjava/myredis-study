@@ -22,7 +22,7 @@ public class MySchedulerConfig implements SchedulingConfigurer {
 
     @Bean(destroyMethod = "shutdown")
     public Executor scheduledThreadPool() {
-        return new ScheduledThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),
+        return new ScheduledThreadPoolExecutor(Runtime.getRuntime().availableProcessors() * 2 * 2,
                 new ThreadFactory() {
 
                     @Override

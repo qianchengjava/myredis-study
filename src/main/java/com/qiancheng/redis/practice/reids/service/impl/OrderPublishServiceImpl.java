@@ -49,7 +49,7 @@ public class OrderPublishServiceImpl implements OrderPublishService {
     /**
      * 定时任务，扫描redis zset元素，取出应处理的元素并发出消息
      */
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 500)
     public void scheduledPublishOrder() {
         System.out.println(Thread.currentThread().getName() + "|" + Thread.currentThread().getId());
         Set<ZSetOperations.TypedTuple<Object>> orderNosRes = zSetOperations.rangeByScoreWithScores(delayOrderKey, 0, Double.valueOf(System.currentTimeMillis()));
