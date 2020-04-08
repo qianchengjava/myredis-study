@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Configuration
-@EnableScheduling
+//@EnableScheduling
 public class MySchedulerConfig implements SchedulingConfigurer {
     private static AtomicInteger num = new AtomicInteger(1);
 
