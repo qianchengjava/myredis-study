@@ -6,7 +6,7 @@ package com.qiancheng.redis.practice.jvm;
 public class GcDemo {
     public Object instance = null;
     private static final int num = 1024 * 1024;
-    private byte[] bigSize = new byte[2 * num];
+    private byte[] bigSize = new byte[5 * num];
 
     public static void main(String[] args) {
         GcDemo gcDemo1 = new GcDemo();

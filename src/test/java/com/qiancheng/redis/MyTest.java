@@ -4,9 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyTest {
 
-    private static volatile AtomicInteger count = new AtomicInteger(1500);
+    private static volatile AtomicInteger count = new AtomicInteger(20);
 
-    public int decrement(){
+    public int decrement() {
         return count.getAndDecrement();
     }
 
@@ -16,17 +16,17 @@ public class MyTest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int i = 0 ; i < 1000; i ++){
+                for (int i = 0; i < 1000; i++) {
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if(MyTest.count.get() != 0){
-                        myTest.decrement();
-                        System.out.print(MyTest.count+"  ");
-                    }else{
-                        System.out.println(MyTest.count);
+                    if (MyTest.count.get() != 0) {
+
+                        System.out.print(myTest.decrement() + "  ");
+                    } else {
+                        System.out.println(myTest.decrement());
                         break;
                     }
                 }
@@ -36,60 +36,57 @@ public class MyTest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int i = 0 ; i < 1000; i ++){
+                for (int i = 0; i < 1000; i++) {
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if(MyTest.count.get() != 0){
-                        myTest.decrement();
-                        System.out.print(MyTest.count+"  ");
-                    }else{
-                        System.out.println(MyTest.count);
+                    if (MyTest.count.get() != 0) {
+                        System.out.print(myTest.decrement() + "  ");
+                    } else {
+                        System.out.println(myTest.decrement());
                         break;
                     }
                 }
             }
         }).start();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                for(int i = 0 ; i < 1000; i ++){
-//                    try {
-//                        Thread.sleep(500);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    if(MyTest.count.get() != 0){
-//                        myTest.decrement();
-//                        System.out.print(MyTest.count+"  ");
-//                    }else{
-//                        System.out.println(MyTest.count);
-//                        break;
-//                    }
-//                }
-//            }
-//        }).start();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                for(int i = 0 ; i < 1000; i ++){
-//                    try {
-//                        Thread.sleep(500);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    if(MyTest.count.get() != 0){
-//                        myTest.decrement();
-//                        System.out.print(MyTest.count+"  ");
-//                    }else{
-//                        System.out.println(MyTest.count);
-//                        break;
-//                    }
-//                }
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000; i++) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (MyTest.count.get() != 0) {
+                        System.out.print(myTest.decrement() + "  ");
+                    } else {
+                        System.out.println(myTest.decrement());
+                        break;
+                    }
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000; i++) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (MyTest.count.get() != 0) {
+                        System.out.print(myTest.decrement() + "  ");
+                    } else {
+                        System.out.println(myTest.decrement());
+                        break;
+                    }
+                }
+            }
+        }).start();
     }
 
 }
