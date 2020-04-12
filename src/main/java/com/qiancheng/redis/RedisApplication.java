@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import javax.annotation.PostConstruct;
+
 @SpringBootApplication
 public class RedisApplication {
     /**
@@ -17,6 +19,14 @@ public class RedisApplication {
         ConfigurableApplicationContext ctx = SpringApplication.run(RedisApplication.class, args);
         AppConfig appConfig = ctx.getBean(AppConfig.class);
         System.out.println(appConfig.getName());
+    }
+
+    /**
+     * 模拟死锁
+     */
+    @PostConstruct
+    public void deadLock(){
+
     }
 
 }
