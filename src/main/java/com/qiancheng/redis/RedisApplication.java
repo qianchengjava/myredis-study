@@ -98,24 +98,24 @@ public class RedisApplication {
 
     }
 
-    @PostConstruct
-    public void visualVM() throws InterruptedException {
-        Map<Integer, Integer> map = new HashMap<>();
-        int i = 0;
-        for (int j = 0; j < 1000; j++) {
-            Thread.sleep(10000);
-            while (i < 2000000) {
-                i++;
-                try {
-                    map.put(i, i);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    break;
-                }
-            }
-        }
-
-    }
+//    @PostConstruct
+//    public void visualVM() throws InterruptedException {
+//        Map<Integer, Integer> map = new HashMap<>();
+//        int i = 0;
+//        for (int j = 0; j < 1000; j++) {
+//            Thread.sleep(10000);
+//            while (i < 2000000) {
+//                i++;
+//                try {
+//                    map.put(i, i);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    break;
+//                }
+//            }
+//        }
+//
+//    }
 
 
 }
