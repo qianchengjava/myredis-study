@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="redis" target="11" />
+      <module name="redis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
