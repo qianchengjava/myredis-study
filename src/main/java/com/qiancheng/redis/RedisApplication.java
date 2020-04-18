@@ -1,6 +1,7 @@
 package com.qiancheng.redis;
 
 import com.qiancheng.redis.practice.config.AppConfig;
+import com.qiancheng.redis.practice.netty.EchoClient;
 import com.qiancheng.redis.practice.netty.MyNettyServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,12 +19,19 @@ public class RedisApplication {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println("step1 开始启动TCP服务器...");
+        EchoClient echoClient = new EchoClient("127.0.0.1", 5656);
         try {
-            MyNettyServer.service();
+            System.out.println("step0 client start-port:" + 5656);
+            echoClient.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        System.out.println("step1 开始启动TCP服务器...");
+//        try {
+//            MyNettyServer.service();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 //        ConfigurableApplicationContext ctx = SpringApplication.run(RedisApplication.class, args);
 //        AppConfig appConfig = ctx.getBean(AppConfig.class);
 //        System.out.println(appConfig.getName());
