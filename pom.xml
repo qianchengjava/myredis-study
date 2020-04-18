@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.qiancheng</groupId>
     <artifactId>redis</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>3.0.1-SNAPSHOT</version>
     <name>redis</name>
     <description>Qiancheng redis practice Of Demo project for Spring Boot</description>
 

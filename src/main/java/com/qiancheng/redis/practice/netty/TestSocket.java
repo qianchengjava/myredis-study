@@ -29,7 +29,7 @@ public class TestSocket {
                     }
                 }).start();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
