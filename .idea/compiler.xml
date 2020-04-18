@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="myredis-study" />
         <module name="redis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="myredis-study" target="1.8" />
       <module name="redis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="myredis-study" options="-parameters" />
       <module name="redis" options="-parameters" />
     </option>
   </component>

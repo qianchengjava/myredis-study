@@ -1,7 +1,6 @@
 package com.qiancheng.redis.practice.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -11,8 +10,6 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 
-import java.io.IOException;
-import java.nio.channels.Selector;
 
 public class MyNettyServer {
     private static final String IP = "127.0.0.1";
@@ -25,6 +22,7 @@ public class MyNettyServer {
 
     public static void service() throws Exception {
         ServerBootstrap bootstrap = new ServerBootstrap();
+        System.out.println("step2 server port:" + PORT);
         bootstrap.group(bossGroup, workerGroup);
         bootstrap.channel(NioServerSocketChannel.class);
         bootstrap.childHandler(new ChannelInitializer<Channel>() {
@@ -41,9 +39,10 @@ public class MyNettyServer {
             }
 
         });
+        System.out.println("step3 bootstrap.bind " + IP + "," + PORT);
         ChannelFuture f = bootstrap.bind(IP, PORT).sync();
         f.channel().closeFuture().sync();
-        System.out.println("TCP服务器已启动");
+        System.out.println("start TCP服务器已启动");
     }
 
     protected static void shutdown() {
@@ -52,7 +51,7 @@ public class MyNettyServer {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("开始启动TCP服务器...");
+        System.out.println("step1 开始启动TCP服务器...");
         MyNettyServer.service();
         //            HelloServer.shutdown();
     }
