@@ -1,6 +1,7 @@
 package com.qiancheng.redis;
 
 import com.qiancheng.redis.practice.config.AppConfig;
+import com.qiancheng.redis.practice.netty.MyNettyServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,10 +18,15 @@ public class RedisApplication {
      * @param args
      */
     public static void main(String[] args) {
-
-        ConfigurableApplicationContext ctx = SpringApplication.run(RedisApplication.class, args);
-        AppConfig appConfig = ctx.getBean(AppConfig.class);
-        System.out.println(appConfig.getName());
+        System.out.println("step1 开始启动TCP服务器...");
+        try {
+            MyNettyServer.service();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        ConfigurableApplicationContext ctx = SpringApplication.run(RedisApplication.class, args);
+//        AppConfig appConfig = ctx.getBean(AppConfig.class);
+//        System.out.println(appConfig.getName());
     }
 
     private static Object lock1 = new Object();
