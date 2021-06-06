@@ -10,7 +10,7 @@ import io.netty.util.CharsetUtil;
  * 就是用户自己实现的，你能说让用户放弃属性的操作吗
  * @ChannelHandler.Sharable 不应该被强压给coder
  */
-@ChannelHandler.Sharable
+//@ChannelHandler.Sharable
 public class MyInHandler extends ChannelInboundHandlerAdapter {
 
     @Override

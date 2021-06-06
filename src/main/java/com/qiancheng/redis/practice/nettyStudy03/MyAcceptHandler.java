@@ -9,9 +9,9 @@ public class MyAcceptHandler extends ChannelInboundHandlerAdapter {
     private final EventLoopGroup selector;
     private final ChannelHandler handler;
 
-    public MyAcceptHandler(EventLoopGroup thread, ChannelHandler myInHandler) {
+    public MyAcceptHandler(EventLoopGroup thread, ChannelHandler channelHandler) {
         this.selector = thread;
-        this.handler = myInHandler;
+        this.handler = channelHandler;//ChannelInit
     }
 
     @Override
@@ -26,13 +26,19 @@ public class MyAcceptHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+
+        /**
+         * listen socket 只能读到accept client
+         * socket     R/W
+         */
         SocketChannel client = (SocketChannel) msg;//accept 我怎么没调用额？
-        //1.注册
-        selector.register(client);
 
         //2.响应式的  handler
-        ChannelPipeline p = client.pipeline();
+        ChannelPipeline p = client.pipeline();//1,client::pipeline
         p.addLast(handler);
+
+        //1.注册
+        selector.register(client);
     }
 
 }

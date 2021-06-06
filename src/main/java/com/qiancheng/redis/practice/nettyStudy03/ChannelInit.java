@@ -1,15 +1,18 @@
 package com.qiancheng.redis.practice.nettyStudy03;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
+import io.netty.channel.*;
 
+@ChannelHandler.Sharable
 public class ChannelInit extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+    public void channelRegistered(ChannelHandlerContext ctx) {
         System.out.println("ChannelInit  channelRegistered ... ");
+        Channel client = ctx.channel();
+        ChannelPipeline p = client.pipeline();
+        p.addLast(new MyInHandler());//2,client::pipline[ChannelInit,MyInHandler]
+        ctx.pipeline().remove(this);
+
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ChannelInit extends ChannelInboundHandlerAdapter {
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
     }
 
 
