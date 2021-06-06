@@ -1,4 +1,4 @@
-package com.qiancheng.redis.practice.nettyStudyAgain;
+package com.qiancheng.redis.practice.nettyStudy02;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

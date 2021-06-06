@@ -1,4 +1,4 @@
-package com.qiancheng.redis.practice.nettyStudyAgain;
+package com.qiancheng.redis.practice.nettyStudy02;
 
 public class MainThread {
 

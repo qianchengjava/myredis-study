@@ -1,4 +1,4 @@
-package com.qiancheng.redis.practice.nettyStudyAgain;
+package com.qiancheng.redis.practice.nettyStudy02;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.Channel;
