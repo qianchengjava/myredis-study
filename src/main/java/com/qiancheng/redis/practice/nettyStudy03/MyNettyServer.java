@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.net.InetSocketAddress;
 
 
-public class MyNetty {
+public class MyNettyServer {
 
 
 

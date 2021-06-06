@@ -56,42 +56,7 @@ public class ByteBufTest {
 //
 //    }
 
-    //    public static void main(String[] args) {
-//        try {
-//            NioEventLoopGroup loopGroup = new NioEventLoopGroup(1);
-//
-//
-//            //客户端模式
-//            NioSocketChannel client = new NioSocketChannel();
-//
-//            loopGroup.register(client);
-//
-//            ChannelPipeline p = client.pipeline();
-//            p.addLast(new MyInHandler());
-//            //reactor 异步的特征
-//            ChannelFuture connect = client.connect(new InetSocketAddress("127.0.0.1", 9090));
-//            ChannelFuture sync = connect.sync();
-//
-//            //
-//            ByteBuf buf = Unpooled.copiedBuffer("hello server".getBytes());
-//            ChannelFuture send = client.writeAndFlush(buf);
-//            send.sync();
-//
-//            //
-//
-//
-//            //
-//            sync.channel().closeFuture().sync();
-//
-//            System.out.println("client over....");
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
+
 
     public static void print(ByteBuf buf) {
         System.out.println("buf.isReadable()" + ":" + buf.isReadable());
